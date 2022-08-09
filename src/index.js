@@ -41,11 +41,11 @@ function getInputValue (e) {
 
 function renderCountriesList(countries) {
     const markup = countries
-      .map(({name, flags}) => {
+      .map(({name: {official}, flags: {svg}}) => {
         return `
             <li>
-            <img src="${flags.svg}" alt="Прапор ${name.official}" width=30>
-            <b>${name.official}</b>
+            <img src="${svg}" alt="Прапор ${official}" width=30>
+            <b>${official}</b>
             </li>
         `;
       })
@@ -53,14 +53,14 @@ function renderCountriesList(countries) {
       countryList.innerHTML = markup;
 }
 
-function renderCountryInfo({languages, flags, name, capital, population}) {
+function renderCountryInfo({languages, flags: {svg}, name: {common, official}, capital, population}) {
     const languagesList = Object.values(languages).join(', ')
     const markup = `
             <div class="country-title">
-                <img src="${flags.svg}" alt="Прапор ${name.official}" width=48>
-                <b>${name.common}</b>
+                <img src="${svg}" alt="Прапор ${official}" width=48>
+                <b>${common}</b>
             </div>
-            <p><b>Official name:</b> ${name.official}</p>
+            <p><b>Official name:</b> ${official}</p>
             <p><b>Capital:</b> ${capital}</p>
             <p><b>Population:</b> ${population}</p>
             <p><b>Languages:</b> ${languagesList}</p>
