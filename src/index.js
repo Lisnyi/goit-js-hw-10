@@ -17,10 +17,12 @@ function getInputValue (e) {
         .then(countries => {
             if (countries.length < 2) {
                 clearInterface()
+                inputField.style.outlineColor = "initial"
                 renderCountryInfo(countries[0])
                 return
             } else if (countries.length > 10) {
                 clearInterface()
+                inputField.style.outlineColor = "initial"
                 Notify.info('Too many matches found. Please enter a more specific name.');
                 return
             }
@@ -28,9 +30,11 @@ function getInputValue (e) {
             renderCountriesList(countries)
         })
         .catch(error =>{
-            clearInterface() 
+            clearInterface()
+            inputField.style.outlineColor = "red"
             return Notify.failure('Oops, there is no country with that name');})
     } else {
+        inputField.style.outlineColor = "initial"
         clearInterface()
     }
 }
@@ -41,7 +45,7 @@ function renderCountriesList(countries) {
         return `
             <li>
             <img src="${flags.svg}" alt="Прапор ${name.official}" width=30>
-            <p>${name.official}</p>
+            <b>${name.official}</b>
             </li>
         `;
       })
@@ -52,11 +56,14 @@ function renderCountriesList(countries) {
 function renderCountryInfo({languages, flags, name, capital, population}) {
     const languagesList = Object.values(languages).join(', ')
     const markup = `
-            <img src="${flags.svg}" alt="Прапор ${name.official}" width=30>
-            <p>${name.official}</p>
-            <p>Capital: ${capital}</p>
-            <p>Population: ${population}</p>
-            <p>Languages: ${languagesList}</p>
+            <div class="country-title">
+                <img src="${flags.svg}" alt="Прапор ${name.official}" width=48>
+                <b>${name.common}</b>
+            </div>
+            <p><b>Official name:</b> ${name.official}</p>
+            <p><b>Capital:</b> ${capital}</p>
+            <p><b>Population:</b> ${population}</p>
+            <p><b>Languages:</b> ${languagesList}</p>
         `;
       countryInfo.innerHTML = markup;
 }

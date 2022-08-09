@@ -7,7 +7,7 @@ body {
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fafafa;
+  background-color: #ededed;
   color: #212121;
   line-height: 1.5;
 }
@@ -17,4 +17,34 @@ body {
   padding: 8px;
   max-width: 320px;
   margin-bottom: 16px;
+}
+
+.country-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.country-list li {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.country-list li:last-child {
+  margin-bottom: 0;
+}
+
+.country-list img {
+  margin-right: 10px;
+}
+
+.country-title {
+  display: flex;
+}
+
+.country-title img {
+  margin-right: 15px;
+}
+
+.country-title b {
+  font-size: 24px;
 }
